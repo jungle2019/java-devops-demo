@@ -10,7 +10,7 @@ pipeline{
             steps{
                 echo "编译。。。"
                 echo "${hello}"
-//                echo "world"
+                echo "${world}"
             }
         }
         stage('测试'){
