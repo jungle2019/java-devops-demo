@@ -1,9 +1,9 @@
 pipeline{
     agent any
 
-    enviroment{
-    hello="12345"
-    world="45678"
+    environment{
+    hello = "12345"
+    world = "45678"
     }
     stages{
         stage('编译'){
