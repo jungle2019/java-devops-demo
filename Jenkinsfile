@@ -1,10 +1,15 @@
 pipeline{
     agent any
+
+    enviroment{
+    hello="12345"
+    world="45678"
+    }
     stages{
         stage('编译'){
             steps{
                 echo "编译。。。"
-
+                echo "${hello}"
             }
         }
         stage('测试'){
