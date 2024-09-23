@@ -31,7 +31,7 @@ pipeline{
                 sh 'docker build -t java-devops-demo .'
             }
         }
-        stage('部 署'){
+        stage('部署'){
             steps{
                 echo "部署。。。"
                 sh 'docker rm -f java-devops-demo-dev'
