@@ -22,7 +22,6 @@ pipeline{
         stage('测试'){
             steps{
                 echo "测试。。。"
-
             }
         }
         stage('打包'){
@@ -30,13 +29,11 @@ pipeline{
                 echo "打包。。。"
                 sh 'docker version'
                 sh 'pwd && ls -alh'
-
             }
         }
         stage('部署'){
             steps{
                 echo "部署。。。"
-
             }
         }
     }
