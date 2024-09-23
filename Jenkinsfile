@@ -1,5 +1,8 @@
 pipeline{
     agent any
+    environment{
+    WS = ${WORKSPACE}
+    }
     stages{
         stage('编译'){
             agent{
@@ -11,7 +14,8 @@ pipeline{
             steps{
                 sh 'pwd && ls -alh'
                 sh 'mvn -v'
-                sh 'mvn clean package -s "/var/jenkins_home/appconfig/maven/settings.xml" -Dmaven.test.skip=true'
+                echo "默认工作目录 ${WS}"
+                sh 'cd ${WS} && mvn clean package -s "/var/jenkins_home/appconfig/maven/settings.xml" -Dmaven.test.skip=true'
             }
         }
         stage('测试'){
@@ -24,11 +28,14 @@ pipeline{
                 echo "打包。。。"
                 sh 'docker version'
                 sh 'pwd && ls -alh'
+                sh 'docker build -t java-devops-demo .'
             }
         }
         stage('部署'){
             steps{
                 echo "部署。。。"
+                sh 'docker rm -f java-devops-demo-dev'
+                sh 'docker run -d -p 8888:8080 --name java-devops-demo-dev java-devops-demo'
             }
         }
     }
