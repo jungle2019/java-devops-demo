@@ -1,12 +1,7 @@
 pipeline{
     agent any
-
-//   environment{
-//   hello = "12345"
-//   world = "45678"
-//    }
     stages{
-        stage('编 译'){
+        stage('编译'){
             agent{
                 docker{
                 image 'maven:3-alpine'
