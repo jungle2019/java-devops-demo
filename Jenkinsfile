@@ -7,10 +7,16 @@ pipeline{
     }
     stages{
         stage('编译'){
+            agent{
+                docker{
+                image 'maven:3-alpine'
+                args '-v /var/jenkins_home/appconfig/maven/.m2:/root/.m2'
+                }
+            }
             steps{
-                echo "编译。。。"
-                echo "${hello}"
-                echo "${world}"
+                sh 'pwd && ls -alh'
+                sh 'mvn -v'
+                sh 'mvn clean package -s "/var/jenkins_home/appconfig/maven/settings.xml" -Dmaven.test.skip=true'
             }
         }
         stage('测试'){
