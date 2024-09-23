@@ -4,7 +4,7 @@ pipeline{
     WS = "${WORKSPACE}"
     }
     stages{
-        stage('编译'){
+        stage('编 译'){
             agent{
                 docker{
                 image 'maven:3-alpine'
