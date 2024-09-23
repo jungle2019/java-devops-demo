@@ -1,10 +1,10 @@
 pipeline{
     agent any
 
-    environment{
-    hello = "12345"
-    world = "45678"
-    }
+//   environment{
+//   hello = "12345"
+//   world = "45678"
+//    }
     stages{
         stage('编 译'){
             agent{
@@ -28,6 +28,8 @@ pipeline{
         stage('打包'){
             steps{
                 echo "打包。。。"
+                sh 'docker version'
+                sh 'pwd && ls -alh'
 
             }
         }
